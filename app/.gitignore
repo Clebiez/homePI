@@ -1,34 +1,13 @@
-# NativeScript
-hooks/
-node_modules/
-platforms/
+node_modules/**/*
+.expo/*
+npm-debug.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
 
-# NativeScript Template
-*.js.map
-
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# General
+# macOS
 .DS_Store
-.AppleDouble
-.LSOverride
-.idea
-.cloud
-.project
-tmp/
-typings/
-
-# Visual Studio Code
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-
-*.tgz
-webpack.config.js
