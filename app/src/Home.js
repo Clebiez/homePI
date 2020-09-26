@@ -3,7 +3,7 @@ import {Layout, Text, Avatar, Card} from "@ui-kitten/components";
 
 import {getTownCurrentWeather} from "./utils/openWeatherUtils";
 
-const HeaderHome = () => <Text category="h3">Home</Text>;
+const HeaderHome = () => <Text style={{textAlign: 'center', padding: '8px'}} category="h4">Home</Text>;
 
 const Home = () => {
   const [outside, setOutside] = useState({});
