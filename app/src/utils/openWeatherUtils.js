@@ -1,6 +1,7 @@
 import axios from "axios";
+import {OPEN_WEATHER_MAP_KEY} from "../../env.config";
 
-const apiKey = "21cf543abd3708ace79a7c8b183edc0e";
+const apiKey = OPEN_WEATHER_MAP_KEY;
 
 export const getTownCurrentWeather = () => {
   return axios.get(
