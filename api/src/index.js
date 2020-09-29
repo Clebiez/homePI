@@ -39,7 +39,7 @@ router.get("/live", async (ctx) => {
       humidity: humidity,
     };
   } catch (e) {
-    console.log('Live preview is not available')
+    console.log(e);
     ctx.status = 400;
   }
 });
