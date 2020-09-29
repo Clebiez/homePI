@@ -3,23 +3,40 @@ import {Layout, Text, Avatar, Card} from "@ui-kitten/components";
 
 import {getTownCurrentWeather} from "./utils/openWeatherUtils";
 
-const HeaderHome = () => <Text style={{textAlign: 'center', padding: '8px'}} category="h4">Home</Text>;
+import {getLive} from "./utils/live";
 
-const Home = () => {
+const Header = ({children}) => (
+  <Text style={{textAlign: "center", padding: "8px"}} category="h4">
+    {children}
+  </Text>
+);
+
+const HeaderHome = () => <Header>Home</Header>;
+const HeaderOutside = () => <Header>Outside</Header>;
+
+const Live = () => {
   const [outside, setOutside] = useState({});
+  const [home, setHome] = useState({});
 
   useEffect(() => {
-    async function getData() {
+    async function getOutside() {
       const {data} = await getTownCurrentWeather();
       setOutside(data);
     }
 
-    getData();
+    async function getHome() {
+      const test = await getLive();
+      // setHome();
+    }
+
+    getOutside();
+    getHome();
   }, []);
 
   return (
     <Layout style={{flex: 1, justifyContent: "center", alignItems: "center"}}>
-      <Card header={HeaderHome}>
+      <Card header={HeaderHome}></Card>
+      <Card header={HeaderOutside}>
         {outside.weather && (
           <>
             <Avatar
@@ -35,4 +52,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Live;

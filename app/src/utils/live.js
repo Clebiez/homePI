@@ -1,7 +1,8 @@
 import axios from "axios";
+import {PI_HOME_LOCAL_IP} from "../../env.config";
 
 const instance = axios.create({
-  baseURL: "http://192.168.0.18:3001",
+  baseURL: PI_HOME_LOCAL_IP,
 });
 
 export const getLive = () => {

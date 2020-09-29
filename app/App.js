@@ -6,16 +6,16 @@ import {
 import {NavigationContainer} from "@react-navigation/native";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 
-import Home from './src/Home';
-import Outdoor from "./src/Outdoor";
+import Live from './src/Live';
+import Weekly from "./src/Weekly";
 import Footer from './src/components/Footer';
 
 const {Navigator, Screen} = createBottomTabNavigator();
 
 const TabNavigator = () => (
   <Navigator tabBar={(props) => <Footer {...props} />}>
-    <Screen name="HOME" component={Home} />
-    <Screen name="OUTDOOR" component={Outdoor} />
+    <Screen name="LIVE" component={Live} />
+    <Screen name="WEEKLY" component={Weekly} />
   </Navigator>
 );
 

@@ -19,7 +19,7 @@ const renderItem = ({item}) => (
   />
 );
 
-const Outdoor = () => {
+const Weekly = () => {
   const [weathers, setWeathers] = useState([]);
 
   useEffect(() => {
@@ -51,4 +51,4 @@ const Outdoor = () => {
   );
 };
 
-export default Outdoor;
+export default Weekly;
