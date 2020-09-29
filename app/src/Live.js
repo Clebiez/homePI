@@ -25,8 +25,8 @@ const Live = () => {
     }
 
     async function getHome() {
-      const test = await getLive();
-      // setHome();
+      const {data} = await getLive();
+      setHome(data);
     }
 
     getOutside();
@@ -35,7 +35,10 @@ const Live = () => {
 
   return (
     <Layout style={{flex: 1, justifyContent: "center", alignItems: "center"}}>
-      <Card header={HeaderHome}></Card>
+      <Card header={HeaderHome}>
+        {home.temp && <Text category="h5">{home.temp}°C</Text>}
+        {home.humidity && <Text category="h5">{home.humidity}%</Text>}
+      </Card>
       <Card header={HeaderOutside}>
         {outside.weather && (
           <>
