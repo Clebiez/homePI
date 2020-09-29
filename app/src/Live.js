@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     width: "90%",
   },
   headerCard: {
-    padding: "12px",
+    padding: 12,
   },
   headerTitle: {
     display: 'flex',
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   headerButton: {
-    marginLeft: '12px'
+    marginLeft: 12
   }
 });
 
