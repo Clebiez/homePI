@@ -1,38 +1,36 @@
 {
-  "nativescript": {
-    "id": "technology.sveltenative.template",
-    "tns-ios": {
-      "version": "6.4.2"
-    },
-    "tns-android": {
-      "version": "6.4.1"
-    },
-    "templateVersion": "v2"
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start:web",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start:web",
+    "eject": "expo eject"
   },
-  "name": "tns-template-blank-svelte",
-  "displayName": "Blank Svelte",
-  "templateType": "App template",
-  "author": "David Pershouse (https://github.com/halfnelson)",
-  "version": "6.4.0",
-  "main": "app.js",
-  "description": "Blank template for Nativescript application using Svelte",
-  "license": "Apache-2.0",
-  "repository": "https://github.com/halfnelson/svelte-native-template",
   "dependencies": {
-    "axios": "^0.19.2",
-    "nativescript-theme-core": "~2.0.24",
-    "svelte-icons": "^2.1.0",
-    "svelte-native": "~0.8.0",
-    "tns-core-modules": "^6.4.2"
+    "@eva-design/eva": "^2.0.0",
+    "@react-native-community/masked-view": "0.1.10",
+    "@react-navigation/bottom-tabs": "^5.9.0",
+    "@react-navigation/native": "^5.7.4",
+    "@ui-kitten/components": "^5.0.0",
+    "axios": "^0.20.0",
+    "date-fns": "^2.16.1",
+    "expo": "~38.0.8",
+    "expo-status-bar": "^1.0.2",
+    "react": "~16.11.0",
+    "react-dom": "~16.11.0",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-38.0.2.tar.gz",
+    "react-native-gesture-handler": "~1.6.0",
+    "react-native-reanimated": "~1.9.0",
+    "react-native-safe-area-context": "~3.0.7",
+    "react-native-screens": "~2.9.0",
+    "react-native-svg": "12.1.0",
+    "react-native-web": "~0.11.7"
   },
   "devDependencies": {
-    "nativescript-dev-webpack": "~1.5.1",
-    "net": "^1.0.2",
-    "svelte": "~3.19.1",
-    "svelte-loader-hot": "0.1.1",
-    "svelte-native-preprocessor": "^0.1.7",
-    "typescript": "~3.7.5"
+    "@babel/core": "^7.8.6",
+    "@expo/webpack-config": "^0.12.28",
+    "babel-preset-expo": "~8.1.0"
   },
-  "gitHead": "c06800e52ee1a184ea2dffd12a6702aaa43be4e3",
-  "readme": "NativeScript Application"
+  "private": true
 }
