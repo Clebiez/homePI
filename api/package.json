@@ -5,16 +5,20 @@
   "repository": "git@github.com:Clebiez/frankyHome.git",
   "author": "Clément Le Biez <clement.lebiez@yousign.fr>",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "start": "node ./src/index.js",
     "dev": "nodemon ./src/index.js"
   },
   "dependencies": {
     "@koa/cors": "2",
+    "axios": "^0.20.0",
+    "dotenv": "^8.2.0",
     "koa": "^2.11.0",
     "koa-body": "^4.1.1",
     "koa-morgan": "^1.0.1",
     "koa-router": "^8.0.8",
+    "node-cron": "^2.0.3",
     "python-shell": "^2.0.0"
   },
   "devDependencies": {

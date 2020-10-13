@@ -1,47 +1,23 @@
-const Koa = require("koa");
-const logger = require("koa-morgan");
-const Router = require("koa-router");
-const bodyParser = require("koa-body")();
-const app = new Koa();
-const cors = require("@koa/cors");
-const PythonShell = require("python-shell").PythonShell;
+import Koa from "koa";
+import logger from "koa-morgan";
+import Router from "koa-router";
 
+import cron from 'node-cron';
+
+import cors from "@koa/cors";
+
+
+import getCurrentWeather from "./controller/getCurrentWeather.js";
+import getWeeklyOutsideWeather from "./controller/getWeeklyOutsideWeather.js";
+import readAndSaveIndoor from "./controller/readAndSaveIndoor.js";
+
+const app = new Koa();
 const router = new Router();
 
-const readDHT22 = () => {
-  return new Promise((resolve, reject) => {
-    const options = {
-      mode: "text",
-      pythonPath: "/usr/bin/python3",
-      pythonOptions: ["-u"],
-      scriptPath: __dirname,
-    };
-    PythonShell.run("./sensors/dht22.py", options, function (err, result) {
-      if (!err && result && Array.isArray(result)) {
-        const data = JSON.parse(result[0]);
-        resolve(data);
-      } else {
-        reject("Python script not working...");
-      }
-    });
-  });
-};
-
-router.get("/live", async (ctx) => {
-  try {
-    const data = await readDHT22();
-
-    temp = data.temperature.toFixed(1);
-    humidity = data.humidity.toFixed(1);
-    ctx.status = 200;
-    ctx.body = {
-      temp: temp,
-      humidity: humidity,
-    };
-  } catch (e) {
-    console.log(e);
-    ctx.status = 400;
-  }
-});
-
+router.get("/live", getCurrentWeather);
+router.get("/weekly", getWeeklyOutsideWeather);
 app.use(logger("tiny")).use(cors()).use(router.routes()).listen(3001);
+
+cron.schedule("0 * * * *", readAndSaveIndoor);
+
+console.log("Started on 3001 port");

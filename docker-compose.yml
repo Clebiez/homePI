@@ -2,14 +2,6 @@ version: "3.5"
 
 services:
 
-  # api:
-  #   build: ./api
-  #   working_dir: "/frankyHome/api"
-  #   ports:
-  #     - 3001:3001
-  #   # depends_on:
-  #   #   - postgres
-
   postgres:
     image: postgres:12.2
     volumes:
