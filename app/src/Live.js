@@ -2,14 +2,12 @@ import React, {useEffect, useState, useCallback} from "react";
 import {StyleSheet} from "react-native";
 import {Layout, Text, Avatar, Card, Button} from "@ui-kitten/components";
 
-import {getTownCurrentWeather} from "./utils/openWeatherUtils";
+import {getLive} from "./utils/api";
 
-import {getLive} from "./utils/live";
-
-const Header = ({children, retryCallback}) => (
+const Header = ({children}) => (
   <Text style={styles.headerTitle} category="h4">
     {children}
-    <Button style={styles.headerButton} onPress={retryCallback}>
+    <Button style={styles.headerButton}>
       Retry
     </Button>
   </Text>
@@ -19,14 +17,10 @@ const Live = () => {
   const [outside, setOutside] = useState({});
   const [home, setHome] = useState({});
 
-  const getOutside = useCallback(async () => {
-    const {data} = await getTownCurrentWeather();
-    setOutside(data);
-  }, [setOutside]);
-
-  const getHome = useCallback(async () => {
+  const getData = useCallback(async () => {
     const {data} = await getLive();
-    setHome(data);
+    setHome(data.inside);
+    setOutside(data.outside);
   }, [setHome]);
 
   const HeaderHome = () => (
@@ -35,13 +29,12 @@ const Live = () => {
     </Header>
   );
   const HeaderOutside = () => (
-    <Header retryCallback={getOutside}>Outside</Header>
+    <Header>Outside</Header>
   );
 
   useEffect(() => {
-    getOutside();
-    getHome();
-  }, [getOutside, getHome]);
+    getData();
+  }, [getData]);
 
   return (
     <Layout

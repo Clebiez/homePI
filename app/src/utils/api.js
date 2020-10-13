@@ -8,3 +8,7 @@ const instance = axios.create({
 export const getLive = () => {
   return instance.get(`/live`);
 };
+
+export const getWeekly = () => {
+  return instance.get(`/weekly`);
+};

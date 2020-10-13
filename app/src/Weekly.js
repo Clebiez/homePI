@@ -2,8 +2,7 @@ import React, {useEffect, useState} from "react";
 import format from "date-fns/format";
 
 import {Layout, List, ListItem, Avatar, Text} from "@ui-kitten/components";
-
-import {getTownOneCallWeather} from "./utils/openWeatherUtils";
+import {getWeekly} from './utils';
 
 const weatherAvatar = (icon) => (
     <Avatar source={`http://openweathermap.org/img/wn/${icon}@2x.png`} size="large" />
@@ -24,8 +23,8 @@ const Weekly = () => {
 
   useEffect(() => {
     async function getData() {
-      const {data} = await getTownOneCallWeather();
-      setWeathers(data.daily);
+      const {data} = await getWeekly();
+      setWeathers(data);
     }
     getData();
   }, []);
