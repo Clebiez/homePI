@@ -1,4 +1,5 @@
-import {getTownOneCallWeather} from '../services/outsideWeather.js';
+const getTownOneCallWeather = require("../services/outsideWeather.js")
+  .getTownOneCallWeather;
 
 const getWeeklyOutsideWeather = async (ctx) => {
   try {
@@ -11,4 +12,4 @@ const getWeeklyOutsideWeather = async (ctx) => {
   }
 };
 
-export default getWeeklyOutsideWeather;
+module.exports = getWeeklyOutsideWeather;

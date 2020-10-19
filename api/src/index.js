@@ -1,15 +1,19 @@
-import Koa from "koa";
-import logger from "koa-morgan";
-import Router from "koa-router";
+const Koa = require("koa");
+const logger = require("koa-morgan");
+const Router = require("koa-router");
 
-import cron from 'node-cron';
+const cron = require('node-cron');
 
-import cors from "@koa/cors";
+const cors = require("@koa/cors");
+const Sequelize = require("sequelize").Sequelize;
 
+const getCurrentWeather = require("./controller/getCurrentWeather.js");
+const getWeeklyOutsideWeather = require("./controller/getWeeklyOutsideWeather.js");
+const readAndSaveIndoor = require("./controller/readAndSaveIndoor.js");
 
-import getCurrentWeather from "./controller/getCurrentWeather.js";
-import getWeeklyOutsideWeather from "./controller/getWeeklyOutsideWeather.js";
-import readAndSaveIndoor from "./controller/readAndSaveIndoor.js";
+const sequelize = new Sequelize(
+  "postgres://root:testtest@localhost:5432/home"
+);
 
 const app = new Koa();
 const router = new Router();
@@ -21,3 +25,14 @@ app.use(logger("tiny")).use(cors()).use(router.routes()).listen(3001);
 cron.schedule("0 * * * *", readAndSaveIndoor);
 
 console.log("Started on 3001 port");
+
+async function init() {
+  try {
+    await sequelize.authenticate();
+    console.log("Connection has been established successfully.");
+  } catch (error) {
+    console.error("Unable to connect to the database:", error);
+  }
+}
+
+init();

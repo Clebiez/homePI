@@ -1,12 +1,11 @@
-import dotenv from "dotenv";
+const dotenv = require("dotenv");
 const config = dotenv.config();
 
-import PythonShellModule from "python-shell";
-const PythonShell = PythonShellModule.PythonShell;
+const PythonShell = require("python-shell").PythonShell;
 
-import path from "path";
+const path = require('path');
 
-export const readDHT22 = () => {
+const readDHT22 = () => {
   if (config.parsed?.FAKE_DHT22) {
     return new Promise((resolve, reject) => {
       resolve({
@@ -36,3 +35,5 @@ export const readDHT22 = () => {
     });
   });
 };
+
+module.exports = readDHT22;

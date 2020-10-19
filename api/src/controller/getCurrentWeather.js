@@ -1,17 +1,23 @@
-import {getTownCurrentWeather} from "../services/outsideWeather.js";
+const getTownCurrentWeather = require("../services/outsideWeather.js")
+  .getTownCurrentWeather;
+const HomeData = require("../models/").HomeData;
 
 const getCurrentWeatherData = async (ctx) => {
   try {
     const {data} = await getTownCurrentWeather();
+    const results = await HomeData.findAll({
+      limit: 1,
+      order: [["createdAt", "DESC"]],
+    });
 
-    //** GET LAST INDOOR CALL */
-    console.log(data);
+    const inside = results[0].dataValues;
     ctx.status = 200;
     ctx.body = {
       outside: {
         weather: data.weather,
         main: data.main,
       },
+      inside,
     };
   } catch (e) {
     console.error(e);
@@ -19,4 +25,4 @@ const getCurrentWeatherData = async (ctx) => {
   }
 };
 
-export default getCurrentWeatherData;
+module.exports = getCurrentWeatherData;
