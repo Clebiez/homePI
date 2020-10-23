@@ -13,7 +13,7 @@ const readAndSaveIndoor = require("./controller/readAndSaveIndoor.js");
 const {parsed} = require("dotenv").config();
 
 const sequelize = new Sequelize(
-  `postgres://${dotenv.POSTGRES_USER}:${dotenv.POSTGRES_PASSWORD}@localhost:5432/${dotenv.POSTGRES_DB}`
+  `postgres://${parsed.POSTGRES_USER}:${parsed.POSTGRES_PASSWORD}@localhost:5432/${parsed.POSTGRES_DB}`
 );
 
 const app = new Koa();
