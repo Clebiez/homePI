@@ -10,9 +10,10 @@ const Sequelize = require("sequelize").Sequelize;
 const getCurrentWeather = require("./controller/getCurrentWeather.js");
 const getWeeklyOutsideWeather = require("./controller/getWeeklyOutsideWeather.js");
 const readAndSaveIndoor = require("./controller/readAndSaveIndoor.js");
+const dotenv = require("dotenv").config();
 
 const sequelize = new Sequelize(
-  "postgres://root:testtest@localhost:5432/home"
+  `postgres://${dotenv.POSTGRES_USER}:${dotenv.POSTGRES_PASSWORD}@localhost:5432/${dotenv.POSTGRES_DB}`
 );
 
 const app = new Koa();
