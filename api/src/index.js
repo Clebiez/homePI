@@ -2,7 +2,7 @@ const Koa = require("koa");
 const logger = require("koa-morgan");
 const Router = require("koa-router");
 
-const cron = require('node-cron');
+const cron = require("node-cron");
 
 const cors = require("@koa/cors");
 const Sequelize = require("sequelize").Sequelize;
@@ -10,7 +10,7 @@ const Sequelize = require("sequelize").Sequelize;
 const getCurrentWeather = require("./controller/getCurrentWeather.js");
 const getWeeklyOutsideWeather = require("./controller/getWeeklyOutsideWeather.js");
 const readAndSaveIndoor = require("./controller/readAndSaveIndoor.js");
-const dotenv = require("dotenv").config();
+const {parsed} = require("dotenv").config();
 
 const sequelize = new Sequelize(
   `postgres://${dotenv.POSTGRES_USER}:${dotenv.POSTGRES_PASSWORD}@localhost:5432/${dotenv.POSTGRES_DB}`

@@ -6,7 +6,7 @@ const PythonShell = require("python-shell").PythonShell;
 const path = require('path');
 
 const readDHT22 = () => {
-  if (config.parsed?.FAKE_DHT22) {
+  if (config.parsed.FAKE_DHT22) {
     return new Promise((resolve, reject) => {
       resolve({
         temperature: Math.floor(Math.random() * 30),

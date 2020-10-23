@@ -1,7 +1,7 @@
 const axios = require("axios");
 const dotenv = require("dotenv");
 
-const apiKey = dotenv.config().parsed?.OPEN_WEATHER_API_KEY;
+const apiKey = dotenv.config().parsed.OPEN_WEATHER_API_KEY;
 
 const getTownCurrentWeather = () => {
   return axios.get(
