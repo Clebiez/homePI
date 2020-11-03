@@ -3,7 +3,7 @@ const config = dotenv.config();
 
 const PythonShell = require("python-shell").PythonShell;
 
-const executePythonScript = (numberOfTries = 0) => {
+const executePythonScript = () => {
   return new Promise((resolve, reject) => {
     const options = {
       mode: "text",
@@ -18,8 +18,6 @@ const executePythonScript = (numberOfTries = 0) => {
           temperature: data.temperature ? data.temperature.toFixed(1) : null,
           humidity: data.humidity ? data.humidity.toFixed(1) : null,
         });
-      } else if (numberOfTries < 5) {
-        return executePythonScript(numberOfTries + 1);
       } else {
         reject(err);
       }
@@ -36,8 +34,24 @@ const readDHT22 = () => {
       });
     });
   }
+  const recursiveCall = async (numberOfTries = 0) => {
+    try {
+      const data = await executePythonScript();
+      if (data.temperature && data.humidity) {
+        return data;
+      } else {
+        throw new Error('Data is null');
+      }
+    } catch {
+      if (numberOfTries < 10) {
+        return recursiveCall(numberOfTries + 1);
+      } else {
+        return undefined;
+      }
+    }
+  }
 
-  return executePythonScript();
+  return recursiveCall();
 };
 
 module.exports = readDHT22;
