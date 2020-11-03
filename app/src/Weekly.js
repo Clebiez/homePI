@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import format from "date-fns/format";
 
 import {Layout, List, ListItem, Avatar, Text} from "@ui-kitten/components";
-import {getWeekly} from './utils';
+import {getWeekly} from './utils/api';
 
 const weatherAvatar = (icon) => (
     <Avatar source={`http://openweathermap.org/img/wn/${icon}@2x.png`} size="large" />

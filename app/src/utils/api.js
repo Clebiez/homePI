@@ -1,6 +1,7 @@
 import axios from "axios";
-import {PI_HOME_LOCAL_IP} from "../../env.config";
+import Constants from "expo-constants";
 
+const PI_HOME_LOCAL_IP = Constants.manifest.extra.API_URL;
 const instance = axios.create({
   baseURL: PI_HOME_LOCAL_IP,
 });

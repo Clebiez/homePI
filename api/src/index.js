@@ -8,6 +8,7 @@ const cors = require("@koa/cors");
 const Sequelize = require("sequelize").Sequelize;
 
 const getCurrentWeather = require("./controller/getCurrentWeather.js");
+const getInstantHomeWeather = require("./controller/getInstantHomeWeather.js");
 const getWeeklyOutsideWeather = require("./controller/getWeeklyOutsideWeather.js");
 const readAndSaveIndoor = require("./controller/readAndSaveIndoor.js");
 const {parsed} = require("dotenv").config();
@@ -20,6 +21,7 @@ const app = new Koa();
 const router = new Router();
 
 router.get("/live", getCurrentWeather);
+router.get("/instant-home", getInstantHomeWeather);
 router.get("/weekly", getWeeklyOutsideWeather);
 app.use(logger("tiny")).use(cors()).use(router.routes()).listen(3001);
 

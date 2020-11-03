@@ -1,80 +1,105 @@
 import React, {useEffect, useState, useCallback} from "react";
 import {StyleSheet} from "react-native";
-import {Layout, Text, Avatar, Card, Button} from "@ui-kitten/components";
+import {Layout, Text, Avatar, Card, Icon, Spinner} from "@ui-kitten/components";
 
 import {getLive} from "./utils/api";
 
 const Header = ({children}) => (
-  <Text style={styles.headerTitle} category="h4">
+  <Text style={styles.headerTitle} category="h6">
     {children}
-    <Button style={styles.headerButton}>
-      Retry
-    </Button>
   </Text>
 );
 
 const Live = () => {
   const [outside, setOutside] = useState({});
   const [home, setHome] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   const getData = useCallback(async () => {
     const {data} = await getLive();
     setHome(data.inside);
     setOutside(data.outside);
+    setIsLoading(false);
   }, [setHome]);
-
-  const HeaderHome = () => (
-    <Header style={styles.headerCard} retryCallback={getHome}>
-      Home
-    </Header>
-  );
-  const HeaderOutside = () => (
-    <Header>Outside</Header>
-  );
 
   useEffect(() => {
     getData();
   }, [getData]);
 
+  if (isLoading) {
+    return (
+      <Layout style={styles.layout}>
+        <Spinner size="giant" />
+      </Layout>
+    );
+  }
+
   return (
-    <Layout
-      style={{flex: 1, justifyContent: "space-evenly", alignItems: "center"}}
-    >
-      <Card style={styles.card} header={HeaderHome}>
-        {home.temp && <Text category="h5">{home.temp}°C</Text>}
-        {home.humidity && <Text category="h5">{home.humidity}%</Text>}
-      </Card>
-      <Card style={styles.card} header={HeaderOutside}>
-        {outside.weather && (
-          <>
+    <Layout style={styles.layout}>
+      <Text category="h2">@ Home</Text>
+      <Layout style={styles.section}>
+        <Card status="warning">
+          <Text style={styles.textCard}>
+            <Icon style={styles.icon} fill="#8F9BB3" name="thermometer" />
+            {home.temperature}°C
+          </Text>
+        </Card>
+        <Card status="primary">
+          <Text style={styles.textCard}>
+            <Icon style={styles.icon} fill="#8F9BB3" name="droplet" />
+            {home.humidity}%
+          </Text>
+        </Card>
+      </Layout>
+      <Text category="h2">@ Caen</Text>
+      <Card status="basic">
+        <>
+          <Text style={styles.textCard}>
             <Avatar
               source={`http://openweathermap.org/img/wn/${outside.weather[0].icon}@2x.png`}
-              size="giant"
+              size="large"
             />
-            <Text category="h5">{outside.weather[0].description}</Text>
-            <Text category="h5">{outside.main.temp}°C</Text>
-          </>
-        )}
+            {outside.main.temp}°C
+          </Text>
+          <Text appearance="hint">{outside.weather[0].description}</Text>
+        </>
       </Card>
     </Layout>
   );
 };
 
 const styles = StyleSheet.create({
-  card: {
-    width: "90%",
+  layout: {flex: 1, justifyContent: "space-evenly", alignItems: "center"},
+  section: {
+    display: "flex",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+    flexDirection: "row",
+    width: "100%",
+  },
+  icon: {
+    width: 42,
+    height: 42,
+    flex: 1,
+  },
+  textCard: {
+    fontSize: "1.3rem",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
   },
   headerCard: {
     padding: 12,
   },
   headerTitle: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center'
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
   headerButton: {
-    marginLeft: 12
-  }
+    marginLeft: 12,
+  },
 });
 
 export default Live;

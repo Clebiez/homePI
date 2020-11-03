@@ -17,9 +17,9 @@ def readDHT22(numberOfTries=1):
 
   except RuntimeError as error:
       if (numberOfTries < 5) :
-        readDHT22(numberOfTries + 1)
+        return readDHT22(numberOfTries + 1)
       else :
-        print('Failed to get reading. Try number ', numberOfTries)
+        print('Failed to get reading, problems here.')
         sys.exit(1)
 
 readDHT22()
