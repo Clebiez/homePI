@@ -1,4 +1,4 @@
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 
 const params = dotenv.config().parsed;
 
@@ -9,6 +9,7 @@ export default {
     version: "1.0.0",
     orientation: "portrait",
     icon: "./assets/icon.png",
+    privacy: "unlisted",
     splash: {
       image: "./assets/splash.png",
       resizeMode: "contain",
@@ -26,6 +27,9 @@ export default {
     },
     extra: {
       API_URL: params.API_URL,
+    },
+    android: {
+      package: "com.clebiez.home",
     },
   },
 };

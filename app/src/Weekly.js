@@ -42,7 +42,7 @@ const Weekly = () => {
         Weekly @ Caen
       </Text>
       <List
-        style={{marginTop: "50px", backgroundColor: 'white'}}
+        style={{marginTop: "50px", backgroundColor: "#222b45"}}
         data={weathers}
         renderItem={renderItem}
       />
