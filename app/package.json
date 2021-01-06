@@ -16,7 +16,7 @@
     "@react-navigation/native": "^5.7.5",
     "@ui-kitten/components": "^5.0.0",
     "@ui-kitten/eva-icons": "^5.0.0",
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "date-fns": "^2.16.1",
     "expo": "~39.0.3",
     "expo-constants": "~9.2.0",
