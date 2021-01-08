@@ -25,7 +25,7 @@ router.get("/instant-home", getInstantHomeWeather);
 router.get("/weekly", getWeeklyOutsideWeather);
 app.use(logger("tiny")).use(cors()).use(router.routes()).listen(3001);
 
-cron.schedule("0 * * * *", readAndSaveIndoor);
+cron.schedule("*/30 * * * *", readAndSaveIndoor);
 
 console.log("Started on 3001 port");
 

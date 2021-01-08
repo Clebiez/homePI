@@ -26,7 +26,7 @@ const executePythonScript = () => {
 };
 
 const readDHT22 = () => {
-  if (config.parsed.FAKE_DHT22 === true) {
+  if (config.parsed.FAKE_DHT22 === 'true') {
     return new Promise((resolve, reject) => {
       resolve({
         temperature: Math.floor(Math.random() * 30),

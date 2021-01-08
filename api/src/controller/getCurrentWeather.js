@@ -10,7 +10,7 @@ const getCurrentWeatherData = async (ctx) => {
       order: [["createdAt", "DESC"]],
     });
 
-    const inside = results[0].dataValues;
+    const inside = results && results.length === 1 ? results[0].dataValues : null;
     ctx.status = 200;
     ctx.body = {
       outside: {
