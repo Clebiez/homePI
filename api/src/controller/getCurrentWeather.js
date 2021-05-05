@@ -1,16 +1,13 @@
 const getTownCurrentWeather = require("../services/outsideWeather.js")
-  .getTownCurrentWeather;
-const HomeData = require("../models/").HomeData;
+.getTownCurrentWeather;
+const readDHT22 = require("../sensors/dht22/dht22.js");
 
 const getCurrentWeatherData = async (ctx) => {
   try {
     const {data} = await getTownCurrentWeather();
-    const results = await HomeData.findAll({
-      limit: 1,
-      order: [["createdAt", "DESC"]],
-    });
 
-    const inside = results && results.length === 1 ? results[0].dataValues : null;
+    const inside = await readDHT22();
+
     ctx.status = 200;
     ctx.body = {
       outside: {

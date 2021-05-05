@@ -4,12 +4,11 @@ import blue from '@material-ui/core/colors/blue';
 import red from '@material-ui/core/colors/red';
 import LocalDrinkIcon from '@material-ui/icons/LocalDrink';
 import WhatshotIcon from '@material-ui/icons/Whatshot';
+import { Typography, LinearProgress, Fade } from '@material-ui/core';
 import HeaderBar from './HeaderBar';
 import Card from './Card';
-
+import DevinceInfo from './DeviceInfo';
 import { getLive } from '../utils/api';
-import { Typography, LinearProgress, Fade } from '@material-ui/core';
-
 const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: '56px',
@@ -32,10 +31,13 @@ function Content() {
   const [loading, setLoading] = useState(true);
   const fetchData = useCallback(async () => {
     setLoading(true);
-
-    const res = await getLive();
-    setData(res.data);
-    setLoading(false);
+    try {
+      const res = await getLive();
+      setData(res.data);
+      setLoading(false);
+    } catch (e) {
+      console.error(e);
+    }
   }, [setData]);
 
   useEffect(() => {
@@ -62,6 +64,7 @@ function Content() {
             </div>
           </div>
         </Fade>
+        <DevinceInfo />
       </div>
     </>
   );

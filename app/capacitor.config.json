@@ -1,0 +1,19 @@
+{
+  "appId": "com.clebiez.app",
+  "appName": "home-app",
+  "bundledWebRuntime": true,
+  "npmClient": "yarn",
+  "webDir": "build",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "server": {
+    "allowNavigation": []
+  },
+  "android": {
+    "allowMixedContent": true
+  },
+  "cordova": {}
+}
