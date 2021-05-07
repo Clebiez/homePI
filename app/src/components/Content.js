@@ -7,7 +7,6 @@ import WhatshotIcon from '@material-ui/icons/Whatshot';
 import { Typography, LinearProgress, Fade } from '@material-ui/core';
 import HeaderBar from './HeaderBar';
 import Card from './Card';
-import DevinceInfo from './DeviceInfo';
 import { getLive } from '../utils/api';
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -64,7 +63,6 @@ function Content() {
             </div>
           </div>
         </Fade>
-        <DevinceInfo />
       </div>
     </>
   );
