@@ -7,6 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "pm2 start ./src/index.js",
+    "stop": "pm2 stop ./src/index.js",
     "dev": "nodemon ./src/index.js"
   },
   "dependencies": {

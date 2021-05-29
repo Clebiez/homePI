@@ -1,12 +1,18 @@
-.PHONY: install deploy
+default: help
 
-install: ;@echo "Installing ....."; \
+help:
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | gawk 'match($$0, /(makefile:)?(.*):.*?## (.*)/, a) {printf "\033[36m%-30s\033[0m %s\n", a[2], a[3]}'
+
+
+install: ## Install dependencies
 	npm install
 
-deploy: ;@echo "Deploying....."; \
-	pm2 restart home
-
-start:
+start: ## Start PM2
 	npm run start
 
-install-and-deploy: install deploy
+stop: ## Stop PM2
+	npm run stop
+
+dev: ## Dev mode with nodemon
+	npm run dev
+
