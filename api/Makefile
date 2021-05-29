@@ -6,4 +6,7 @@ install: ;@echo "Installing ....."; \
 deploy: ;@echo "Deploying....."; \
 	pm2 restart home
 
+start:
+	npm run start
+
 install-and-deploy: install deploy

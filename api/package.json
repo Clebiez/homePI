@@ -6,7 +6,7 @@
   "author": "Clément Le Biez <clement.lebiez@yousign.fr>",
   "license": "MIT",
   "scripts": {
-    "start": "node ./src/index.js",
+    "start": "pm2 start ./src/index.js",
     "dev": "nodemon ./src/index.js"
   },
   "dependencies": {
@@ -20,6 +20,7 @@
     "node-cron": "^2.0.3",
     "pg": "^8.4.1",
     "pg-hstore": "^2.3.3",
+    "pm2": "^4.5.6",
     "python-shell": "^2.0.3",
     "sequelize": "^6.3.5"
   },
